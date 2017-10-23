@@ -11,6 +11,7 @@ var SERVER_URL = 'http://parse.shared.hackreactor.com/chatterbox/classes/message
 //This one calls the Parse server to grab data, and sends it to processData
 var getData = function() {
   $.ajax(SERVER_URL + '?order=-createdAt', {
+    type: 'GET';
     contentType: 'application/json',
     success: function(data) {
       processData(data); // eslint-disable-line no-use-before-define
@@ -113,8 +114,10 @@ var postData = function(message, username) {
       username: username,
       text: message
     }),
-    success: function(data) {
-      console.log('Success!', data);
+    success: function(data) 
+    getData();
+      console.log('message sent');
+          console.log('Success!', data);
     },
     error: function(data) {
       console.log(data);
